@@ -1,0 +1,262 @@
+Info 0    [09:49:57.892] Starting TS Server
+Info 1    [09:49:57.894] Version: 4.6.2
+Info 2    [09:49:57.894] Arguments: /home/sxrthxk/.nvm/versions/node/v17.4.0/bin/node /home/sxrthxk/digidocs/node_modules/typescript/lib/tsserver.js --logFile /home/sxrthxk/digidocs/.log/tsserver.log --logVerbosity info --cancellationPipeName /tmp/e71707edda08d514b226f443047400fc/tscancellation*
+Info 3    [09:49:57.894] Platform: linux NodeVersion: 17 CaseSensitive: true
+Info 4    [09:49:57.894] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [09:49:57.906] Format host information updated
+Info 6    [09:49:57.913] Search path: /home/sxrthxk/digidocs/pages
+Info 7    [09:49:57.913] For info: /home/sxrthxk/digidocs/pages/_app.tsx :: Config file name: /home/sxrthxk/digidocs/tsconfig.json
+Info 8    [09:49:57.914] Creating configuration project /home/sxrthxk/digidocs/tsconfig.json
+Info 9    [09:49:57.934] Config: /home/sxrthxk/digidocs/tsconfig.json : {
+ "rootNames": [
+  "/home/sxrthxk/digidocs/next-env.d.ts",
+  "/home/sxrthxk/digidocs/lib/theme/index.ts",
+  "/home/sxrthxk/digidocs/pages/api/hello.ts",
+  "/home/sxrthxk/digidocs/pages/_app.tsx",
+  "/home/sxrthxk/digidocs/pages/index.tsx"
+ ],
+ "options": {
+  "target": 1,
+  "lib": [
+   "lib.dom.d.ts",
+   "lib.dom.iterable.d.ts",
+   "lib.esnext.d.ts"
+  ],
+  "allowJs": true,
+  "skipLibCheck": true,
+  "strict": true,
+  "forceConsistentCasingInFileNames": true,
+  "noEmit": true,
+  "esModuleInterop": true,
+  "module": 99,
+  "moduleResolution": 2,
+  "resolveJsonModule": true,
+  "isolatedModules": true,
+  "jsx": 1,
+  "incremental": true,
+  "configFilePath": "/home/sxrthxk/digidocs/tsconfig.json"
+ }
+}
+Info 10   [09:49:58.093] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 11   [09:49:59.918] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 1824.5442239999538ms
+Info 12   [09:49:59.918] Project '/home/sxrthxk/digidocs/tsconfig.json' (Configured)
+Info 13   [09:49:59.918] 	Files (775)
+
+Info 14   [09:49:59.918] -----------------------------------------------
+Info 15   [09:49:59.939] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 16   [09:49:59.955] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 2 structureChanged: false structureIsReused:: Completely Elapsed: 16.019466000027023ms
+Info 17   [09:49:59.955] Different program with same set of files
+Info 18   [09:49:59.987] getCompletionData: Get current token: 0.0462289999704808
+Info 19   [09:49:59.987] getCompletionData: Is inside comment: 0.10164699994493276
+Info 20   [09:49:59.987] getCompletionData: Get previous token: 0.06729799997992814
+Info 21   [09:49:59.995] getExportInfoMap: cache miss or empty; calculating new results
+Info 22   [09:50:00.113] getExportInfoMap: done in 124.37027200008743 ms
+Info 23   [09:50:00.131] collectAutoImports: resolved 11 module specifiers, plus 0 ambient and -6 from cache
+Info 24   [09:50:00.131] collectAutoImports: response is complete
+Info 25   [09:50:00.131] collectAutoImports: 17.430741999996826
+Info 26   [09:50:00.131] getCompletionData: Semantic work: 143.20365599996876
+Info 27   [09:50:00.143] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 11.226686000009067
+Info 28   [09:50:00.149] getCompletionData: Get current token: 0.028411999926902354
+Info 29   [09:50:00.149] getCompletionData: Is inside comment: 0.1220840000314638
+Info 30   [09:50:00.149] getCompletionData: Get previous token: 0.038637999910861254
+Info 31   [09:50:00.150] getExportInfoMap: cache hit
+Info 32   [09:50:00.157] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 13 from cache
+Info 33   [09:50:00.157] collectAutoImports: response is complete
+Info 34   [09:50:00.158] collectAutoImports: 7.267433000029996
+Info 35   [09:50:00.158] getCompletionData: Semantic work: 8.027723000035621
+Info 36   [09:50:00.158] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 0.3591880000894889
+Info 37   [09:50:00.159] getCompletionData: Get current token: 0.010470999986864626
+Info 38   [09:50:00.159] getCompletionData: Is inside comment: 0.018902000039815903
+Info 39   [09:50:00.159] getCompletionData: Get previous token: 0.02629700000397861
+Info 40   [09:50:00.159] getExportInfoMap: cache hit
+Info 41   [09:50:00.166] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 13 from cache
+Info 42   [09:50:00.166] collectAutoImports: response is complete
+Info 43   [09:50:00.166] collectAutoImports: 7.056302000069991
+Info 44   [09:50:00.167] getCompletionData: Semantic work: 7.804026000085287
+Info 45   [09:50:00.167] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 0.24977300001773983
+Info 46   [09:50:00.167] getCompletionData: Get current token: 0.009957000031135976
+Info 47   [09:50:00.167] getCompletionData: Is inside comment: 0.07256500003859401
+Info 48   [09:50:00.167] getCompletionData: Get previous token: 0.030624000006355345
+Info 49   [09:50:00.168] getExportInfoMap: cache hit
+Info 50   [09:50:00.176] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 13 from cache
+Info 51   [09:50:00.176] collectAutoImports: response is complete
+Info 52   [09:50:00.176] collectAutoImports: 7.374656000058167
+Info 53   [09:50:00.176] getCompletionData: Semantic work: 8.055738000082783
+Info 54   [09:50:00.176] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 0.26075399992987514
+Info 55   [09:50:00.177] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 56   [09:50:00.196] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 3 structureChanged: false structureIsReused:: Completely Elapsed: 19.171586000011303ms
+Info 57   [09:50:00.196] Different program with same set of files
+Info 58   [09:50:00.246] getCompletionData: Get current token: 0.011066999984905124
+Info 59   [09:50:00.246] getCompletionData: Is inside comment: 0.023400999954901636
+Info 60   [09:50:00.246] getCompletionData: Get previous token: 0.02700199990067631
+Info 61   [09:50:00.252] getExportInfoMap: cache hit
+Info 62   [09:50:00.263] collectAutoImports: resolved 9 module specifiers, plus 0 ambient and -33 from cache
+Info 63   [09:50:00.263] collectAutoImports: response is complete
+Info 64   [09:50:00.263] collectAutoImports: 11.242024000035599
+Info 65   [09:50:00.263] getCompletionData: Semantic work: 17.47370299999602
+Info 66   [09:50:00.267] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 3.5813319999724627
+Info 67   [09:50:01.149] DirectoryWatcher:: Triggered with /home/sxrthxk/digidocs/.log/ti-5411.log 0:: WatchInfo: /home/sxrthxk/digidocs 1 undefined Config: /home/sxrthxk/digidocs/tsconfig.json WatchType: Wild card directory
+Info 68   [09:50:01.151] Project: /home/sxrthxk/digidocs/tsconfig.json Detected file add/remove of non supported extension: /home/sxrthxk/digidocs/.log/ti-5411.log
+Info 69   [09:50:01.151] Elapsed:: 1.3649950000690296ms DirectoryWatcher:: Triggered with /home/sxrthxk/digidocs/.log/ti-5411.log 0:: WatchInfo: /home/sxrthxk/digidocs 1 undefined Config: /home/sxrthxk/digidocs/tsconfig.json WatchType: Wild card directory
+Info 70   [09:50:01.463] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 71   [09:50:01.495] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 4 structureChanged: false structureIsReused:: Completely Elapsed: 31.40052900009323ms
+Info 72   [09:50:01.495] Different program with same set of files
+Info 73   [09:50:01.789] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 74   [09:50:01.818] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 5 structureChanged: false structureIsReused:: Completely Elapsed: 28.672018999932334ms
+Info 75   [09:50:01.818] Different program with same set of files
+Info 76   [09:50:02.658] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 77   [09:50:02.666] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 6 structureChanged: false structureIsReused:: Completely Elapsed: 8.363421000074595ms
+Info 78   [09:50:02.667] Different program with same set of files
+Info 79   [09:50:02.667] getCompletionData: Get current token: 0.011926000006496906
+Info 80   [09:50:02.667] getCompletionData: Is inside comment: 0.022419000044465065
+Info 81   [09:50:02.667] getCompletionData: Get previous token: 0.02893999998923391
+Info 82   [09:50:02.668] getCompletionsAtPosition: isCompletionListBlocker: 0.36937099997885525
+Info 83   [09:50:02.680] getExportInfoMap: cache hit
+Info 84   [09:50:02.698] collectAutoImports: resolved 43 module specifiers, plus 19 ambient and -582 from cache
+Info 85   [09:50:02.698] collectAutoImports: response is complete
+Info 86   [09:50:02.698] collectAutoImports: 17.805042000021785
+Info 87   [09:50:02.698] getCompletionData: Semantic work: 30.261438000015914
+Info 88   [09:50:02.726] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 27.94702999992296
+Info 89   [09:50:03.955] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 90   [09:50:03.975] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 7 structureChanged: false structureIsReused:: Completely Elapsed: 19.985418000025675ms
+Info 91   [09:50:03.975] Different program with same set of files
+Info 92   [09:50:04.621] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 93   [09:50:04.644] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 8 structureChanged: false structureIsReused:: Completely Elapsed: 22.30899699998554ms
+Info 94   [09:50:04.644] Different program with same set of files
+Info 95   [09:50:04.646] getCompletionData: Get current token: 0.03973499999847263
+Info 96   [09:50:04.646] getCompletionData: Is inside comment: 0.05604000005405396
+Info 97   [09:50:04.646] getCompletionData: Get previous token: 0.07637899997644126
+Info 98   [09:50:04.661] getExportInfoMap: cache hit
+Info 99   [09:50:04.689] collectAutoImports: resolved 6 module specifiers, plus 3 ambient and 103 from cache
+Info 100  [09:50:04.689] collectAutoImports: response is complete
+Info 101  [09:50:04.689] collectAutoImports: 27.468697999953292
+Info 102  [09:50:04.689] getCompletionData: Semantic work: 43.33631200005766
+Info 103  [09:50:04.697] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 7.5584129999624565
+Info 104  [09:50:04.790] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 105  [09:50:04.799] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 9 structureChanged: false structureIsReused:: Completely Elapsed: 9.102599999983795ms
+Info 106  [09:50:04.799] Different program with same set of files
+Info 107  [09:50:04.799] getCompletionData: Get current token: 0.012408000067807734
+Info 108  [09:50:04.799] getCompletionData: Is inside comment: 0.018401999957859516
+Info 109  [09:50:04.799] getCompletionData: Get previous token: 0.023898000014014542
+Info 110  [09:50:04.804] getExportInfoMap: cache hit
+Info 111  [09:50:04.811] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 146 from cache
+Info 112  [09:50:04.811] collectAutoImports: response is complete
+Info 113  [09:50:04.811] collectAutoImports: 7.057504000025801
+Info 114  [09:50:04.811] getCompletionData: Semantic work: 11.803537999978289
+Info 115  [09:50:04.813] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 1.5044550000457093
+Info 116  [09:50:05.368] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 117  [09:50:05.391] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 10 structureChanged: false structureIsReused:: Completely Elapsed: 22.172479000058956ms
+Info 118  [09:50:05.391] Different program with same set of files
+Info 119  [09:50:05.950] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 120  [09:50:05.971] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 11 structureChanged: false structureIsReused:: Completely Elapsed: 21.518562999903224ms
+Info 121  [09:50:05.972] Different program with same set of files
+Info 122  [09:50:05.973] getCompletionData: Get current token: 0.03452900005504489
+Info 123  [09:50:05.973] getCompletionData: Is inside comment: 0.056517999968491495
+Info 124  [09:50:05.973] getCompletionData: Get previous token: 0.06596499995794147
+Info 125  [09:50:05.986] getExportInfoMap: cache hit
+Info 126  [09:50:06.006] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 139 from cache
+Info 127  [09:50:06.006] collectAutoImports: response is complete
+Info 128  [09:50:06.006] collectAutoImports: 19.203062999993563
+Info 129  [09:50:06.006] getCompletionData: Semantic work: 32.2105000000447
+Info 130  [09:50:06.010] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 4.033890999970026
+Info 131  [09:50:06.579] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 132  [09:50:06.600] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 12 structureChanged: false structureIsReused:: Completely Elapsed: 20.618080999935046ms
+Info 133  [09:50:06.600] Different program with same set of files
+Info 134  [09:50:07.457] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 135  [09:50:07.478] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 13 structureChanged: false structureIsReused:: Completely Elapsed: 20.492869000067003ms
+Info 136  [09:50:07.478] Different program with same set of files
+Info 137  [09:50:07.853] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 138  [09:50:07.860] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 14 structureChanged: false structureIsReused:: Completely Elapsed: 6.790394000010565ms
+Info 139  [09:50:07.860] Different program with same set of files
+Info 140  [09:50:08.264] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 141  [09:50:08.428] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 15 structureChanged: true structureIsReused:: SafeModules Elapsed: 164.08140999998432ms
+Info 142  [09:50:08.428] Different program with same set of files
+Info 143  [09:50:08.434] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 144  [09:50:08.500] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 16 structureChanged: true structureIsReused:: SafeModules Elapsed: 66.3466269999044ms
+Info 145  [09:50:08.500] Different program with same set of files
+Info 146  [09:50:12.246] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 147  [09:50:12.321] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 17 structureChanged: true structureIsReused:: SafeModules Elapsed: 74.49610399990343ms
+Info 148  [09:50:12.321] Different program with same set of files
+Info 149  [09:50:12.972] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 150  [09:50:13.099] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 18 structureChanged: true structureIsReused:: SafeModules Elapsed: 127.15909999993164ms
+Info 151  [09:50:13.099] Different program with same set of files
+Info 152  [09:50:16.315] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 153  [09:50:16.383] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 19 structureChanged: true structureIsReused:: SafeModules Elapsed: 66.87143900000956ms
+Info 154  [09:50:16.383] Different program with same set of files
+Info 155  [09:50:17.393] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 156  [09:50:17.532] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 20 structureChanged: true structureIsReused:: SafeModules Elapsed: 138.70447700005025ms
+Info 157  [09:50:17.532] Different program with same set of files
+Info 158  [09:50:18.369] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 159  [09:50:18.498] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 21 structureChanged: true structureIsReused:: SafeModules Elapsed: 129.02352499996778ms
+Info 160  [09:50:18.498] Different program with same set of files
+Info 161  [09:50:23.223] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 162  [09:50:23.245] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 22 structureChanged: false structureIsReused:: Completely Elapsed: 22.333611999987625ms
+Info 163  [09:50:23.245] Different program with same set of files
+Info 164  [09:50:23.329] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 165  [09:50:23.349] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 23 structureChanged: false structureIsReused:: Completely Elapsed: 19.469756999984384ms
+Info 166  [09:50:23.349] Different program with same set of files
+Info 167  [09:50:23.571] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 168  [09:50:23.591] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 24 structureChanged: false structureIsReused:: Completely Elapsed: 19.836728999973275ms
+Info 169  [09:50:23.591] Different program with same set of files
+Info 170  [09:50:23.592] getCompletionData: Get current token: 0.05147499998565763
+Info 171  [09:50:23.592] getCompletionData: Is inside comment: 0.01429600000847131
+Info 172  [09:50:23.593] getCompletionData: Get previous token: 0.1876369999954477
+Info 173  [09:50:23.593] getCompletionsAtPosition: isCompletionListBlocker: 0.03867899999022484
+Info 174  [09:50:23.647] getCompletionData: Semantic work: 54.22469699999783
+Info 175  [09:50:23.654] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 6.0751660000532866
+Info 176  [09:50:24.378] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 177  [09:50:24.386] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 25 structureChanged: false structureIsReused:: Completely Elapsed: 7.960684999939986ms
+Info 178  [09:50:24.386] Different program with same set of files
+Info 179  [09:50:24.387] getCompletionData: Get current token: 0.054865999962203205
+Info 180  [09:50:24.387] getCompletionData: Is inside comment: 0.015000000013969839
+Info 181  [09:50:24.387] getCompletionData: Get previous token: 0.07232499995734543
+Info 182  [09:50:24.387] getCompletionsAtPosition: isCompletionListBlocker: 0.0931269999127835
+Info 183  [09:50:24.406] getCompletionData: Semantic work: 19.490961999981664
+Info 184  [09:50:24.432] getCompletionData: Get current token: 0.03307499992661178
+Info 185  [09:50:24.432] getCompletionData: Is inside comment: 0.007893000030890107
+Info 186  [09:50:24.432] getCompletionData: Get previous token: 0.0795660000294447
+Info 187  [09:50:24.432] getCompletionsAtPosition: isCompletionListBlocker: 0.019566999981179833
+Info 188  [09:50:24.433] getCompletionData: Semantic work: 0.9288190000224859
+Info 189  [09:50:25.993] Starting updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json
+Info 190  [09:50:26.014] Finishing updateGraphWorker: Project: /home/sxrthxk/digidocs/tsconfig.json Version: 26 structureChanged: false structureIsReused:: Completely Elapsed: 21.118237999966368ms
+Info 191  [09:50:26.015] Different program with same set of files
+Info 192  [09:50:26.016] getCompletionData: Get current token: 0.06697599997278303
+Info 193  [09:50:26.016] getCompletionData: Is inside comment: 0.015427000005729496
+Info 194  [09:50:26.017] getCompletionData: Get previous token: 0.20886900008190423
+Info 195  [09:50:26.017] getCompletionsAtPosition: isCompletionListBlocker: 0.019968000007793307
+Info 196  [09:50:26.036] getExportInfoMap: cache hit
+Info 197  [09:50:26.047] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 40 from cache
+Info 198  [09:50:26.047] collectAutoImports: response is complete
+Info 199  [09:50:26.047] collectAutoImports: 10.704964000033215
+Info 200  [09:50:26.048] getCompletionData: Semantic work: 30.91965799999889
+Info 201  [09:50:26.147] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 37.15088299999479
+Info 202  [09:50:26.190] getCompletionData: Get current token: 0.02160199999343604
+Info 203  [09:50:26.190] getCompletionData: Is inside comment: 0.005188999930396676
+Info 204  [09:50:26.190] getCompletionData: Get previous token: 0.10240899992641062
+Info 205  [09:50:26.190] getCompletionsAtPosition: isCompletionListBlocker: 0.004881999921053648
+Info 206  [09:50:26.193] getExportInfoMap: cache hit
+Info 207  [09:50:26.196] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 40 from cache
+Info 208  [09:50:26.196] collectAutoImports: response is complete
+Info 209  [09:50:26.196] collectAutoImports: 3.542570999939926
+Info 210  [09:50:26.197] getCompletionData: Semantic work: 6.638762000016868
+Info 211  [09:50:26.212] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 14.75321100000292
+Info 212  [09:50:26.221] getCompletionData: Get current token: 0.031466999906115234
+Info 213  [09:50:26.221] getCompletionData: Is inside comment: 0.007370999897830188
+Info 214  [09:50:26.221] getCompletionData: Get previous token: 0.10500300000421703
+Info 215  [09:50:26.221] getCompletionsAtPosition: isCompletionListBlocker: 0.005922999931499362
+Info 216  [09:50:26.226] getExportInfoMap: cache hit
+Info 217  [09:50:26.232] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 40 from cache
+Info 218  [09:50:26.232] collectAutoImports: response is complete
+Info 219  [09:50:26.232] collectAutoImports: 5.321705999900587
+Info 220  [09:50:26.232] getCompletionData: Semantic work: 10.579060000018217
+Info 221  [09:50:26.241] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 9.088259999989532
+Info 222  [09:50:26.243] getCompletionData: Get current token: 0.01734499994199723
+Info 223  [09:50:26.243] getCompletionData: Is inside comment: 0.0048840000526979566
+Info 224  [09:50:26.243] getCompletionData: Get previous token: 0.06174300005659461
+Info 225  [09:50:26.243] getCompletionsAtPosition: isCompletionListBlocker: 0.0039820000529289246
+Info 226  [09:50:26.245] getExportInfoMap: cache hit
+Info 227  [09:50:26.249] collectAutoImports: resolved 0 module specifiers, plus 0 ambient and 40 from cache
+Info 228  [09:50:26.249] collectAutoImports: response is complete
+Info 229  [09:50:26.249] collectAutoImports: 3.501704000052996
+Info 230  [09:50:26.249] getCompletionData: Semantic work: 5.973882000078447
+Info 231  [09:50:26.258] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 8.55393399996683
