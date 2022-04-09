@@ -8,10 +8,10 @@ const Layout = ({
   children?: JSX.Element | JSX.Element[] | string;
 }) => {
   return (
-    <AuthProvider>
+    <>
       <Navbar />
       <>{children}</>
-    </AuthProvider>
+    </>
   );
 };
 
