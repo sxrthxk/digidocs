@@ -11,10 +11,14 @@ import { useRouter } from "next/router";
 
 type ContextType = {
   signInWithGoogle: () => void;
+  isUser: "yes" | "no" | "loading";
+  signOut: () => void;
 };
 
 const initialValue: ContextType = {
   signInWithGoogle: () => {},
+  isUser: "loading",
+  signOut: () => {}
 };
 
 const AuthContext = React.createContext(initialValue);
@@ -24,21 +28,28 @@ const AuthProvider = ({
 }: {
   children?: JSX.Element | JSX.Element[] | string;
 }) => {
-
   const router = useRouter();
 
   const signInWithGoogle = useCallback(async () => {
-    setIsUser("loading")
+    setIsUser("loading");
     const provider = new GoogleAuthProvider();
     await signInWithPopup(auth, provider);
-    router.push('/')
-  }, []);
+    router.push("/");
+  }, [router]);
+
+  const signOut = async () => {
+    setIsUser('loading')
+    await auth.signOut()
+    setIsUser('no')
+    router.push('/auth')
+  }
 
   const [isUser, setIsUser] = useState<"yes" | "no" | "loading">("no");
 
   useEffect(() => {
+    setIsUser("loading")
     const f = onAuthStateChanged(auth, (user) => {
-      setIsUser((user === null) ? "no" : "yes")
+      setIsUser(user === null ? "no" : "yes");
     });
     return f;
   }, []);
@@ -47,6 +58,8 @@ const AuthProvider = ({
     <AuthContext.Provider
       value={{
         signInWithGoogle,
+        isUser,
+        signOut
       }}
     >
       {children}
