@@ -25,6 +25,7 @@ const AuthPage = () => {
     otpSent: false,
     otp: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -40,7 +41,6 @@ const AuthPage = () => {
       {
         size: "invisible",
         callback: (response: any) => {
-          console.log("Verified");
         },
         defaultCountry: "IN",
       },
@@ -51,6 +51,7 @@ const AuthPage = () => {
   const phoneNumberAuth = {
     otpHandler: async (e: any) => {
       e.preventDefault();
+      setLoading(true);
 
       const confirmationResult: ConfirmationResult = (window as any)
         .confirmationResult;
@@ -70,6 +71,8 @@ const AuthPage = () => {
     phoneNumberHandler: async (e: any) => {
       e.preventDefault();
 
+      setLoading(true);
+
       const confirmationResult = await signInWithPhoneNumber(
         auth,
         `+91${formData.phone_number}`,
@@ -82,6 +85,8 @@ const AuthPage = () => {
       });
 
       (window as any).confirmationResult = confirmationResult;
+
+      setLoading(false);
     },
   };
 
@@ -96,15 +101,14 @@ const AuthPage = () => {
             className="p-3 flex flex-col"
           >
             <div className="flex">
-              <div className=" rounded-md my-2 p-2 flex justify-center items-center border-2 border-gray-400 rounded-r-none border-r-0">
-                <span className="border-r-2 border-gray-400 pr-2">
-                +91
-                </span>
+              <div className={(loading ? "opacity-50" : "") + " rounded-md my-2 p-2 flex justify-center items-center border-2 border-gray-400 rounded-r-none border-r-0"} >
+                <span className="border-r-2 border-gray-400 pr-2">+91</span>
               </div>
               <Input
                 type="tel"
                 className="border-l-0 rounded-l-none"
                 value={formData.phone_number}
+                disabled={loading}
                 required
                 placeholder="Enter Phone Number"
                 onChange={(e) =>
@@ -117,6 +121,7 @@ const AuthPage = () => {
                 type="number"
                 placeholder="Enter OTP"
                 value={formData.otp}
+                disabled={loading}
                 required
                 min={6}
                 onChange={(e) =>
@@ -125,9 +130,16 @@ const AuthPage = () => {
               />
             )}
 
-            <div id="sign-in-button"></div>
+            <div id="sign-in-button" className="hidden" ></div>
 
-            <Button colorScheme="teal" variant={"solid"} type="submit" my="3">
+            <Button
+              colorScheme="teal"
+              variant={"solid"}
+              type="submit"
+              my="3"
+              isLoading={loading}
+              isDisabled={loading}
+            >
               Submit
             </Button>
           </form>

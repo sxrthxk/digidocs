@@ -7,7 +7,7 @@ import Navbar from "../lib/components/Navbar";
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout fullWidth>
       <Hero />
       <GetStarted />
     </Layout>

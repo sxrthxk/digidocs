@@ -1,12 +1,13 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { useAuth } from "../context";
 import { auth } from "../firebase/config";
 
 const Navbar = () => {
-
   const { isUser, signOut } = useAuth();
+  const router = useRouter()
 
   return (
     <Flex
@@ -19,9 +20,11 @@ const Navbar = () => {
       <Heading fontWeight={"light"}>DigiDocs</Heading>
       {isUser !== "no" ? (
         <Flex className="h-full items-center space-x-3">
-          <span>
-            Hello <strong>{auth.currentUser?.displayName}</strong>
-          </span>
+          {auth.currentUser?.displayName && (
+            <span>
+              Hello <strong>{auth.currentUser?.displayName}</strong>
+            </span>
+          )}
           <Button
             variant={"outline"}
             colorScheme={"red"}
@@ -33,11 +36,8 @@ const Navbar = () => {
         </Flex>
       ) : (
         <Flex>
-          <Button variant={"ghost"} colorScheme="whiteAlpha">
+          <Button variant={"solid"} colorScheme="whiteAlpha" marginLeft={6} onClick={() => router.push('/auth') } >
             Sign In
-          </Button>
-          <Button variant={"solid"} colorScheme="whiteAlpha" marginLeft={6}>
-            Sign Up
           </Button>
         </Flex>
       )}

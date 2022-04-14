@@ -5,14 +5,15 @@ import Navbar from "./Navbar";
 
 const Layout = ({
   children,
+  fullWidth = false,
   authRequired = false,
 }: {
   children?: JSX.Element | JSX.Element[] | string;
+  fullWidth?: boolean;
   authRequired?: boolean;
 }) => {
   const { requireAuth, isUser } = useAuth();
   useEffect(() => {
-    console.log(requireAuth)
     authRequired && requireAuth();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUser]);
@@ -20,7 +21,7 @@ const Layout = ({
   return (
     <>
       <Navbar />
-      <div className="max-w-4xl m-auto">{children}</div>
+      <div className={`${!fullWidth && "max-w-4xl"} m-auto`}>{children}</div>
     </>
   );
 };

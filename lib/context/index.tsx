@@ -42,7 +42,6 @@ const AuthProvider = ({
   };
 
   const requireAuth = () => {
-    console.log(auth.currentUser)
     if(!auth.currentUser) {
       if (isUser === "no") {
         typeof window !== "undefined" && router.push("/auth");
