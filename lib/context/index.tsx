@@ -1,24 +1,19 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import React from "react";
-import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-  User,
-} from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useRouter } from "next/router";
 
 type ContextType = {
-  signInWithGoogle: () => void;
   isUser: "yes" | "no" | "loading";
   signOut: () => void;
+  requireAuth: () => void;
 };
 
 const initialValue: ContextType = {
-  signInWithGoogle: () => {},
   isUser: "loading",
-  signOut: () => {}
+  requireAuth: () => {},
+  signOut: () => {},
 };
 
 const AuthContext = React.createContext(initialValue);
@@ -30,36 +25,44 @@ const AuthProvider = ({
 }) => {
   const router = useRouter();
 
-  const signInWithGoogle = useCallback(async () => {
-    setIsUser("loading");
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-    router.push("/");
-  }, [router]);
-
-  const signOut = async () => {
-    setIsUser('loading')
-    await auth.signOut()
-    setIsUser('no')
-    router.push('/auth')
-  }
-
-  const [isUser, setIsUser] = useState<"yes" | "no" | "loading">("no");
+  const [isUser, setIsUser] = useState<"yes" | "no" | "loading">("loading");
 
   useEffect(() => {
-    setIsUser("loading")
     const f = onAuthStateChanged(auth, (user) => {
       setIsUser(user === null ? "no" : "yes");
     });
     return f;
   }, []);
 
+  const signOut = async () => {
+    setIsUser("loading");
+    await auth.signOut();
+    setIsUser("no");
+    router.push("/auth");
+  };
+
+  const requireAuth = () => {
+    console.log(auth.currentUser)
+    if(!auth.currentUser) {
+      if (isUser === "no") {
+        typeof window !== "undefined" && router.push("/auth");
+        return
+      }
+    }
+    else {
+      if(!auth.currentUser.displayName) {
+        typeof window !== "undefined" && router.push("/update-profile");
+
+      }
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
-        signInWithGoogle,
         isUser,
-        signOut
+        signOut,
+        requireAuth,
       }}
     >
       {children}

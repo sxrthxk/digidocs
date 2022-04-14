@@ -5,6 +5,7 @@ import { useAuth } from "../context";
 import { auth } from "../firebase/config";
 
 const Navbar = () => {
+
   const { isUser, signOut } = useAuth();
 
   return (
@@ -21,20 +22,6 @@ const Navbar = () => {
           <span>
             Hello <strong>{auth.currentUser?.displayName}</strong>
           </span>
-          <Box
-            w={12}
-            h={12}
-            position="relative"
-            className="rounded-full overflow-hidden"
-          >
-            {auth.currentUser?.photoURL && (
-              <Image
-                src={auth.currentUser?.photoURL}
-                layout="fill"
-                alt="Profile Photo"
-              />
-            )}
-          </Box>
           <Button
             variant={"outline"}
             colorScheme={"red"}
