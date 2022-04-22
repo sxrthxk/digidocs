@@ -1,10 +1,10 @@
 import React from 'react';
 import DashLayout from '../lib/components/DashLayout';
 
-const HomePage = () => {
-  return <DashLayout>
-    home
+const AccountsPage = () => {
+  return <DashLayout >
+      Account Page
   </DashLayout>;
 };
 
-export default HomePage;
+export default AccountsPage;
