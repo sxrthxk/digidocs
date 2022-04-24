@@ -28,7 +28,8 @@ const DashLayout = ({
             <motion.div
               transition={{
                 bounce: 0,
-                duration: 0.4
+                duration: 0.4,
+                ease: 'easeInOut'
               }}
               initial={{ x: '-100vw' }}
               animate={{ x: 0 }}
