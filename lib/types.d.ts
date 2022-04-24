@@ -1,0 +1,3 @@
+interface UserDocType {
+    title: string;
+}

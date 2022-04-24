@@ -7,7 +7,7 @@ import {
   signInWithCredential,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import { auth } from "../lib/firebase/config";
+import { auth, firestore } from "../lib/firebase/config";
 import { Button, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { isNewUser } from "../lib/utils";
@@ -40,8 +40,7 @@ const AuthPage = () => {
       "sign-in-button",
       {
         size: "invisible",
-        callback: (response: any) => {
-        },
+        callback: (response: any) => {},
         defaultCountry: "IN",
       },
       auth
@@ -62,6 +61,7 @@ const AuthPage = () => {
       const { user } = await signInWithCredential(auth, credential);
       if (isNewUser(user)) {
         router.push("/update-profile");
+
         return;
       }
 
@@ -101,7 +101,12 @@ const AuthPage = () => {
             className="p-3 flex flex-col"
           >
             <div className="flex">
-              <div className={(loading ? "opacity-50" : "") + " rounded-md my-2 p-2 flex justify-center items-center border-2 border-gray-400 rounded-r-none border-r-0"} >
+              <div
+                className={
+                  (loading ? "opacity-50" : "") +
+                  " rounded-md my-2 p-2 flex justify-center items-center border-2 border-gray-400 rounded-r-none border-r-0"
+                }
+              >
                 <span className="border-r-2 border-gray-400 pr-2">+91</span>
               </div>
               <Input
@@ -130,7 +135,7 @@ const AuthPage = () => {
               />
             )}
 
-            <div id="sign-in-button" className="hidden" ></div>
+            <div id="sign-in-button" className="hidden"></div>
 
             <Button
               colorScheme="teal"
