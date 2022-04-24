@@ -94,7 +94,7 @@ const AuthPage = () => {
 
   return (
     <Layout>
-      <Flex m="auto" className="drop-shadow-md rounded-lg">
+      <Flex m="auto" className="drop-shadow-md rounded-lg box-border">
         <Card>
           <form
             onSubmit={formData.otpSent ? otpHandler : phoneNumberHandler}
@@ -106,7 +106,7 @@ const AuthPage = () => {
               </div>
               <Input
                 type="tel"
-                className="border-l-0 rounded-l-none"
+                className="border-l-0 rounded-l-none w-60 md:w-full"
                 value={formData.phone_number}
                 disabled={loading}
                 required
