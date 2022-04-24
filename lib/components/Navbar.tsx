@@ -6,7 +6,7 @@ import { FaBars, FaHamburger } from "react-icons/fa";
 import { useAuth } from "../context";
 import { auth } from "../firebase/config";
 
-const Navbar = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
+const Navbar = ({ toggleSidebar }: { toggleSidebar?: () => void }) => {
   const { isUser, signOut } = useAuth();
   const router = useRouter();
 
