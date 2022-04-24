@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context";
@@ -22,7 +23,23 @@ const DashLayout = ({
     <div className="min-h-screen bg-gray-100">
       <Navbar toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
       <div className="flex">
-        <Sidebar sidebarOpen={sidebarOpen} className="hidden md:flex"/>
+        <AnimatePresence>
+          {sidebarOpen && (
+            <motion.div
+              transition={{
+                bounce: 0,
+                duration: 0.4
+              }}
+              initial={{ x: '-100vw' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100vw' }}
+              className="flex md:hidden z-20"
+            >
+              <Sidebar sidebarOpen={sidebarOpen} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <Sidebar sidebarOpen={sidebarOpen} className="hidden md:flex" />
         <div className="min-h-full ml-0 md:ml-60 w-full">{children}</div>
       </div>
     </div>
