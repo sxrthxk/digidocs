@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import {
   Button,
   Modal as ChakraModal,
@@ -14,7 +14,7 @@ import { documents } from "../models/documents";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { ref, uploadBytes } from "firebase/storage";
 import { auth, firestore, storage } from "../firebase/config";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, setDoc } from "firebase/firestore";
 
 const AddDocumentForm = () => {
   const [formData, setFormData] = useState<{
@@ -28,6 +28,8 @@ const AddDocumentForm = () => {
   const [uploadState, setUploadState] = useState<
     "idle" | "uploading" | "success" | "error"
   >("idle");
+
+  
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
@@ -43,8 +45,8 @@ const AddDocumentForm = () => {
       firestore,
       "userdocs",
       auth.currentUser.uid,
-      formData.documentTitle,
-      "file"
+      "Documents",
+      formData.documentTitle
     );
     await setDoc(fsRef, {
       title: formData.documentTitle,

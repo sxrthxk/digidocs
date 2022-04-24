@@ -4,10 +4,29 @@ import React, { useEffect } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import Modal from "../lib/components/CustomModal";
 import DashLayout from "../lib/components/DashLayout";
+import { useAuth } from "../lib/context";
 import { auth, firestore } from "../lib/firebase/config";
 
 const HomePage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isUser } = useAuth();
+
+  useEffect(() => {
+    if(!auth.currentUser) return
+    isUser === "yes" &&
+      getDocs(
+        query(
+          collection(
+            firestore,
+            "userdocs",
+            auth.currentUser?.uid as string,
+            "Documents"
+          )
+        )
+      ).then((data) => {
+        data.forEach((sn) => console.log(sn.data()));
+      });
+  }, [isUser]);
 
   return (
     <DashLayout>
