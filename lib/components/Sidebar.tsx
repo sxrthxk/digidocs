@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { IconType } from "react-icons";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
+import { useAuth } from "../context";
 
 const Sidebar = ({
   sidebarOpen,
@@ -12,6 +13,8 @@ const Sidebar = ({
   className?: string;
 }) => {
   const router = useRouter();
+
+  const { signOut } = useAuth();
 
   const sidebarItems: {
     key: number;
@@ -29,7 +32,6 @@ const Sidebar = ({
       key: 2,
       title: "Account",
       icon: AiOutlineUser,
-
       route: "/account",
     },
   ];
@@ -52,7 +54,12 @@ const Sidebar = ({
           </div>
         ))}
         <div className="h-px w-10/12 bg-white my-3"></div>
-        <Button variant={"outline"} colorScheme="red" className="my-2">
+        <Button
+          variant={"outline"}
+          colorScheme="red"
+          className="my-2"
+          onClick={signOut}
+        >
           LogOut
         </Button>
       </div>
