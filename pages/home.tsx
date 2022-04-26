@@ -1,6 +1,6 @@
-import { useDisclosure } from "@chakra-ui/react";
+import { Spinner, useDisclosure } from "@chakra-ui/react";
 import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import Modal from "../lib/components/CustomModal";
 import DashLayout from "../lib/components/DashLayout";
@@ -11,8 +11,15 @@ const HomePage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isUser } = useAuth();
 
+  const [userData, setUserData] = useState<{ file: string; title: string }[]>(
+    []
+  );
+  const [fetchState, setFetchState] = useState<
+    "fetching" | "fetched" | "errored"
+  >("fetching");
+
   useEffect(() => {
-    if(!auth.currentUser) return
+    if (!auth.currentUser) return;
     isUser === "yes" &&
       getDocs(
         query(
@@ -24,7 +31,10 @@ const HomePage = () => {
           )
         )
       ).then((data) => {
-        data.forEach((sn) => console.log(sn.data()));
+        let fetchedData: { file: string; title: string }[] = [];
+        data.forEach((sn) => fetchedData.push(sn.data() as any));
+        setUserData(fetchedData);
+        setFetchState("fetched");
       });
   }, [isUser]);
 
@@ -32,14 +42,21 @@ const HomePage = () => {
     <DashLayout>
       <div className="p-2 md:p-4">
         <h1 className="text-4xl font-semibold mb-4">Your Documents</h1>
-        <div className="flex p-2 bg-gray-200 drop-shadow-sm rounded-lg">
-          <div
-            onClick={onOpen}
-            className="px-24 py-12 flex flex-col items-center bg-green-800 text-white rounded-md cursor-pointer"
-          >
-            <FaPlusCircle className="mb-3 w-6 h-6" />
-            <span>Add</span>
-          </div>
+        <div className="flex p-2 bg-gray-200 drop-shadow-sm rounded-lg flex-wrap gap-2">
+          {fetchState === "fetching" && (
+            <Spinner className="mx-auto my-8" size={"xl"} />
+          )}
+          {fetchState === "fetched" && (
+            <>
+              <Card onClick={onOpen}>
+                <FaPlusCircle className="mb-3 w-6 h-6" />
+                <span>Add</span>
+              </Card>
+              {userData.map((udata) => (
+                <Card key={udata.title}>{udata.title}</Card>
+              ))}
+            </>
+          )}
         </div>
       </div>
       <Modal isOpen={isOpen} onClose={onClose} />
@@ -48,3 +65,22 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+const Card = ({
+  onClick,
+  children,
+}: {
+  onClick?: () => void;
+  children: JSX.Element | string | JSX.Element[];
+}) => {
+  return (
+    <div
+      onClick={onClick}
+      className={
+        "px-24 py-12 flex flex-col items-center justify-center w-full md:w-auto text-white rounded-md bg-green-800 cursor-pointer "
+      }
+    >
+      {children}
+    </div>
+  );
+};
