@@ -1,7 +1,9 @@
-import { Spinner, useDisclosure } from "@chakra-ui/react";
+import { Button, Spinner, useDisclosure } from "@chakra-ui/react";
 import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import ConfirmationModal from "../lib/components/ConfirmationModal";
 import Modal from "../lib/components/CustomModal";
 import DashLayout from "../lib/components/DashLayout";
 import { useAuth } from "../lib/context";
@@ -48,12 +50,31 @@ const HomePage = () => {
           )}
           {fetchState === "fetched" && (
             <>
-              <Card onClick={onOpen}>
+              <Card
+                onClick={onOpen}
+                className="bg-gradient-to-l from-gray-900 to-gray-600"
+              >
                 <FaPlusCircle className="mb-3 w-6 h-6" />
                 <span>Add</span>
               </Card>
               {userData.map((udata) => (
-                <Card key={udata.title}>{udata.title}</Card>
+                <Card key={udata.title}>
+                  <>
+                    {udata.title}
+                    <Button
+                      colorScheme={"linkedin"}
+                      className="mt-1"
+                      onClick={() => {
+                        window.open(udata.file, "_blank");
+                      }}
+                      _focus={{
+                        outline: "none",
+                      }}
+                    >
+                      View
+                    </Button>
+                  </>
+                </Card>
               ))}
             </>
           )}
@@ -69,18 +90,28 @@ export default HomePage;
 const Card = ({
   onClick,
   children,
+  className,
 }: {
   onClick?: () => void;
   children: JSX.Element | string | JSX.Element[];
+  className?: string;
 }) => {
+
   return (
     <div
       onClick={onClick}
       className={
-        "px-24 py-12 flex flex-col items-center justify-center w-full md:w-auto text-white rounded-md bg-green-800 cursor-pointer "
+        "px-24 py-12 flex flex-col items-center justify-center w-full md:w-auto text-white rounded-md bg-green-800 cursor-pointer relative " +
+        className
       }
     >
       {children}
+      <div
+        className="absolute top-0 right-0 m-3"
+      >
+        <IoMdClose className="w-6 h-6" />
+      </div>
+      {/* <ConfirmationModal isOpen={isOpen} onClose={onClose} /> */}
     </div>
   );
 };

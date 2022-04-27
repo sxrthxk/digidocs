@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { documents } from "../models/documents";
 import { AiOutlineCheckCircle } from "react-icons/ai";
-import { ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { auth, firestore, storage } from "../firebase/config";
 import { collection, doc, getDoc, getDocs, query, setDoc } from "firebase/firestore";
 
@@ -40,7 +40,7 @@ const AddDocumentForm = () => {
       storage,
       `${auth.currentUser?.uid}/${formData.documentTitle}/${formData.documentFile?.name}`
     );
-    const snapshot = await uploadBytes(docRef, formData.documentFile);
+    await uploadBytes(docRef, formData.documentFile);
     const fsRef = doc(
       firestore,
       "userdocs",
@@ -48,9 +48,10 @@ const AddDocumentForm = () => {
       "Documents",
       formData.documentTitle
     );
+    const downloadURL = await getDownloadURL(docRef)
     await setDoc(fsRef, {
       title: formData.documentTitle,
-      file: snapshot.metadata.fullPath,
+      file: downloadURL
     });
     setUploadState("success");
   };
@@ -128,7 +129,7 @@ const AddDocumentForm = () => {
 
 const Modal = ({ isOpen, onClose }: Pick<ModalProps, "isOpen" | "onClose">) => {
   return (
-    <ChakraModal isOpen={isOpen} onClose={onClose}>
+    <ChakraModal isOpen={isOpen} onClose={onClose} isCentered size={'3xl'} >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Add New Document</ModalHeader>
