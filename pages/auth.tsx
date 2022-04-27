@@ -7,13 +7,14 @@ import {
   signInWithCredential,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import { auth, firestore } from "../lib/firebase/config";
+import { auth } from "../lib/firebase/config";
 import { Button, Flex } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { isNewUser } from "../lib/utils";
+import { FirebaseErrorMessages, isNewUser } from "../lib/utils";
 import { useAuth } from "../lib/context";
 import Card from "../lib/components/common/AuthCard";
 import Input from "../lib/components/common/Input";
+import { FirebaseError } from "firebase/app";
 
 const AuthPage = () => {
   const [formData, setFormData] = useState<{
@@ -26,6 +27,8 @@ const AuthPage = () => {
     otp: "",
   });
   const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -58,33 +61,43 @@ const AuthPage = () => {
         confirmationResult.verificationId,
         formData.otp
       );
-      const { user } = await signInWithCredential(auth, credential);
-      if (isNewUser(user)) {
-        router.push("/update-profile");
 
-        return;
+      try {
+        const { user } = await signInWithCredential(auth, credential);
+        if (isNewUser(user)) {
+          router.push("/update-profile");
+
+          return;
+        }
+
+        router.push("/home");
+      } catch (e: any) {
+        const error: FirebaseError = e;
+        setError(FirebaseErrorMessages[error.code])
+        setLoading(false);
       }
-
-      router.push("/home");
     },
 
     phoneNumberHandler: async (e: any) => {
       e.preventDefault();
 
       setLoading(true);
+      try {
+        const confirmationResult = await signInWithPhoneNumber(
+          auth,
+          `+91${formData.phone_number}`,
+          (window as any).recaptchaVerifier
+        );
 
-      const confirmationResult = await signInWithPhoneNumber(
-        auth,
-        `+91${formData.phone_number}`,
-        (window as any).recaptchaVerifier
-      );
-
-      setFormData({
-        ...formData,
-        otpSent: true,
-      });
-
-      (window as any).confirmationResult = confirmationResult;
+        setFormData({
+          ...formData,
+          otpSent: true,
+        });
+        (window as any).confirmationResult = confirmationResult;
+      } catch (e: any) {
+        const error: FirebaseError = e;
+        setError(FirebaseErrorMessages[error.code]);
+      }
 
       setLoading(false);
     },
@@ -110,15 +123,17 @@ const AuthPage = () => {
                 <span className="border-r-2 border-gray-400 pr-2">+91</span>
               </div>
               <Input
-                type="tel"
+                type="number"
                 className="border-l-0 rounded-l-none w-60 md:w-full"
                 value={formData.phone_number}
                 disabled={loading}
+                minLength={10}
                 required
                 placeholder="Enter Phone Number"
-                onChange={(e) =>
-                  setFormData({ ...formData, phone_number: e.target.value })
-                }
+                onChange={(e) => {
+                  setError("");
+                  setFormData({ ...formData, phone_number: e.target.value });
+                }}
               />
             </div>
             {formData.otpSent && (
@@ -128,12 +143,14 @@ const AuthPage = () => {
                 value={formData.otp}
                 disabled={loading}
                 required
-                min={6}
-                onChange={(e) =>
-                  setFormData({ ...formData, otp: e.target.value })
-                }
+                minLength={6}
+                onChange={(e) => {
+                  setError("");
+                  setFormData({ ...formData, otp: e.target.value });
+                }}
               />
             )}
+            {error && <div className="text-red-400 text-sm">{error}</div>}
 
             <div id="sign-in-button" className="hidden"></div>
 
