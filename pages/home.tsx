@@ -20,6 +20,8 @@ const HomePage = () => {
     "fetching" | "fetched" | "errored"
   >("fetching");
 
+  const [confirmationIndex, setConfirmationIndex] = useState(-1);
+
   useEffect(() => {
     if (!auth.currentUser) return;
     isUser === "yes" &&
@@ -57,8 +59,13 @@ const HomePage = () => {
                 <FaPlusCircle className="mb-3 w-6 h-6" />
                 <span>Add</span>
               </Card>
-              {userData.map((udata) => (
-                <Card key={udata.title}>
+              {userData.map((udata, index) => (
+                <Card
+                  key={udata.title}
+                  deleteHandler={() => {
+                    setConfirmationIndex(index);
+                  }}
+                >
                   <>
                     {udata.title}
                     <Button
@@ -76,6 +83,17 @@ const HomePage = () => {
                   </>
                 </Card>
               ))}
+              {confirmationIndex > -1 && (
+                <ConfirmationModal
+                deleteHandler={() => {}}
+                  documentName={userData[confirmationIndex].title}
+                  isOpen={confirmationIndex > -1}
+                  onClose={() => {
+                    setConfirmationIndex(-1);
+                    onClose();
+                  }}
+                />
+              )}
             </>
           )}
         </div>
@@ -91,12 +109,13 @@ const Card = ({
   onClick,
   children,
   className,
+  deleteHandler,
 }: {
   onClick?: () => void;
   children: JSX.Element | string | JSX.Element[];
   className?: string;
+  deleteHandler?: () => void;
 }) => {
-
   return (
     <div
       onClick={onClick}
@@ -106,11 +125,11 @@ const Card = ({
       }
     >
       {children}
-      <div
-        className="absolute top-0 right-0 m-3"
-      >
-        <IoMdClose className="w-6 h-6" />
-      </div>
+      {deleteHandler && (
+        <div className="absolute top-0 right-0 m-3" onClick={deleteHandler}>
+          <IoMdClose className="w-6 h-6" />
+        </div>
+      )}
       {/* <ConfirmationModal isOpen={isOpen} onClose={onClose} /> */}
     </div>
   );
