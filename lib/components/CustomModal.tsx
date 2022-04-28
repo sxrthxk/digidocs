@@ -29,18 +29,23 @@ const AddDocumentForm = () => {
     "idle" | "uploading" | "success" | "error"
   >("idle");
 
-  
+  const [error, setError] = useState("");
 
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
     if (!auth.currentUser) return;
     if (!formData.documentFile) return;
+    if(formData.documentFile.type !== "application/pdf") {
+      setUploadState("error")
+      setError("File is not PDF, please enter a PDF file!")
+      return;
+    }
     setUploadState("uploading");
     const docRef = ref(
       storage,
       `${auth.currentUser?.uid}/${formData.documentTitle}/${formData.documentFile?.name}`
     );
-    await uploadBytes(docRef, formData.documentFile);
+    const snapshot = await uploadBytes(docRef, formData.documentFile);
     const fsRef = doc(
       firestore,
       "userdocs",
@@ -51,9 +56,11 @@ const AddDocumentForm = () => {
     const downloadURL = await getDownloadURL(docRef)
     await setDoc(fsRef, {
       title: formData.documentTitle,
+      filePath: snapshot.metadata.fullPath,
       file: downloadURL
     });
     setUploadState("success");
+    window.location.reload();
   };
 
   if (uploadState === "success")
@@ -109,6 +116,9 @@ const AddDocumentForm = () => {
               hidden
             />
           </Button>
+          {(uploadState === "error") && <div className="text-red-500 mt-1 text-sm">
+            {error}
+          </div>}
         </div>
       )}
       {formData.documentTitle && formData.documentFile && (

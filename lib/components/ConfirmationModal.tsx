@@ -15,13 +15,21 @@ const ConfirmationModal = ({
   isOpen,
   onClose,
   documentName,
-  deleteHandler
+  deleteHandler,
+  loading,
 }: {
   isOpen: boolean;
-  documentName: string;
+  documentName?: string;
   onClose: () => void;
-  deleteHandler: () => void;
+  deleteHandler: () => Promise<void>;
+  loading: boolean;
 }) => {
+
+  const delHandler = async () => {
+    await deleteHandler();
+    onClose();
+  }
+
   return (
     <ChakraModal isOpen={isOpen} onClose={onClose} isCentered size={"3xl"}>
       <ModalOverlay />
@@ -29,11 +37,28 @@ const ConfirmationModal = ({
         <ModalHeader>Warning</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <div>Are your sure you want to remove {documentName} from your locker?</div>
+          <div>
+            Are your sure you want to remove {documentName && documentName} from your locker?
+          </div>
         </ModalBody>
         <ModalFooter>
-          <Button className="mr-3" colorScheme={'blue'} onClick={onClose}>Cancel</Button>
-          <Button colorScheme={'red'} onClick={deleteHandler}>Delete</Button>
+          <Button
+            className="mr-3"
+            colorScheme={"blue"}
+            onClick={onClose}
+            isLoading={loading}
+            isDisabled={loading}
+          >
+            Cancel
+          </Button>
+          <Button
+            colorScheme={"red"}
+            onClick={delHandler}
+            isLoading={loading}
+            isDisabled={loading}
+          >
+            Delete
+          </Button>
         </ModalFooter>
       </ModalContent>
     </ChakraModal>

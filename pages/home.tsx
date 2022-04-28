@@ -1,5 +1,13 @@
 import { Button, Spinner, useDisclosure } from "@chakra-ui/react";
-import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+} from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
@@ -7,20 +15,41 @@ import ConfirmationModal from "../lib/components/ConfirmationModal";
 import Modal from "../lib/components/CustomModal";
 import DashLayout from "../lib/components/DashLayout";
 import { useAuth } from "../lib/context";
-import { auth, firestore } from "../lib/firebase/config";
+import { auth, firestore, storage } from "../lib/firebase/config";
 
 const HomePage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isUser } = useAuth();
 
-  const [userData, setUserData] = useState<{ file: string; title: string }[]>(
-    []
-  );
+  const [userData, setUserData] = useState<
+    { file: string; title: string; filePath: string }[]
+  >([]);
   const [fetchState, setFetchState] = useState<
     "fetching" | "fetched" | "errored"
   >("fetching");
 
   const [confirmationIndex, setConfirmationIndex] = useState(-1);
+
+  const [loading, setLoading] = useState(false);
+
+  const deleteHandler = async () => {
+    if (!auth.currentUser) return;
+    setLoading(true);
+    const fileRef = ref(storage, userData[confirmationIndex].filePath);
+    await deleteObject(fileRef);
+    const dataDoc = doc(
+      firestore,
+      "userdocs",
+      auth.currentUser.uid,
+      "Documents",
+      userData[confirmationIndex].title
+    );
+    await deleteDoc(dataDoc);
+    let newArr = userData
+    newArr.splice(confirmationIndex, 1)
+    setLoading(false);
+    setUserData(newArr);
+  };
 
   useEffect(() => {
     if (!auth.currentUser) return;
@@ -35,7 +64,8 @@ const HomePage = () => {
           )
         )
       ).then((data) => {
-        let fetchedData: { file: string; title: string }[] = [];
+        let fetchedData: { file: string; title: string; filePath: string }[] =
+          [];
         data.forEach((sn) => fetchedData.push(sn.data() as any));
         setUserData(fetchedData);
         setFetchState("fetched");
@@ -85,8 +115,9 @@ const HomePage = () => {
               ))}
               {confirmationIndex > -1 && (
                 <ConfirmationModal
-                deleteHandler={() => {}}
-                  documentName={userData[confirmationIndex].title}
+                  loading={loading}
+                  deleteHandler={deleteHandler}
+                  documentName={userData[confirmationIndex]?.title}
                   isOpen={confirmationIndex > -1}
                   onClose={() => {
                     setConfirmationIndex(-1);
